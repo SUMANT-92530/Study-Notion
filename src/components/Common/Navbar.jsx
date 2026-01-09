@@ -33,7 +33,7 @@ import ProfileDropdown from "../core/Auth/ProfileDropdown"
 function Navbar() {
   const { token } = useSelector((state) => state.auth)
   const { user } = useSelector((state) => state.profile)
-  const { totalItems } = useSelector((state) => state.cart)
+  const { totalItems = 0 } = useSelector((state) => state.cart || {})
   const location = useLocation()
 
   const [subLinks, setSubLinks] = useState([])
@@ -44,7 +44,7 @@ function Navbar() {
       setLoading(true)
       try {
         const res = await apiConnector("GET", categories.CATEGORIES_API)
-        setSubLinks(res.data.data)
+        setSubLinks(res?.data?.data || [])
       } catch (error) {
         console.log("Could not fetch Categories.", error)
       }
