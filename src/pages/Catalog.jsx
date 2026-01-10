@@ -19,25 +19,37 @@ function Catalog() {
   const [catalogPageData, setCatalogPageData] = useState(null)
   const [categoryId, setCategoryId] = useState("")
   // Fetch All Categories
+  console.log("CATEGORY ID BEING SENT:", categoryId)
+
   useEffect(() => {
-    ;(async () => {
-      try {
-        const res = await apiConnector("GET", categories.CATEGORIES_API)
-        const category_id = res?.data?.data?.filter(
-          (ct) => ct.name.split(" ").join("-").toLowerCase() === catalogName
-        )[0]._id
-        setCategoryId(category_id)
-      } catch (error) {
-        console.log("Could not fetch Categories.", error)
+  ;(async () => {
+    try {
+      const res = await apiConnector("GET", categories.CATEGORIES_API)
+
+      const matchedCategory = res?.data?.data?.find(
+        (ct) =>
+          ct.name.split(" ").join("-").toLowerCase() ===
+          catalogName.toLowerCase()
+      )
+
+      if (!matchedCategory) {
+        console.error("No matching category found for:", catalogName)
+        return
       }
-    })()
-  }, [catalogName])
+
+      setCategoryId(matchedCategory._id)
+    } catch (error) {
+      console.log("Could not fetch Categories.", error)
+    }
+  })()
+}, [catalogName])
+ 
   useEffect(() => {
     if (categoryId) {
       ;(async () => {
         try {
           const res = await getCatalogPageData(categoryId)
-          setCatalogPageData(res)
+          setCatalogPageData(res.data)
         } catch (error) {
           console.log(error)
         }
