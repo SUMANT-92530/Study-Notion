@@ -16,7 +16,9 @@ Responsive UI
 # Tech Stack
 
 Frontend: React.js, Redux Toolkit, Tailwind CSS
+
 Backend: Node.js, Express.js, MongoDB
+
 Auth: JWT, Bcrypt
 
 # What This Project Shows
