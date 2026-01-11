@@ -8,9 +8,13 @@ https://study-notion-frontend-lake-three.vercel.app/
 # Features
 
 Role-based authentication (Student / Instructor / Admin)
+
 Course creation & enrollment
+
 Secure payment integration
+
 Video lectures & progress tracking
+
 Responsive UI
 
 # Tech Stack
@@ -24,9 +28,13 @@ Auth: JWT, Bcrypt
 # What This Project Shows
 
 Real-world full-stack development
+
 Authentication & authorization
+
 REST API design
+
 Payment workflow implementation
+
 Production deployment experience
 
 Other: Cloudinary, Razorpay/Stripe
